@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <style>
+            .par {
+                border: 1px solid;
+                border-color: transparent;
+                box-shadow: var(--shadow-xl);
+                border-radius: 15px;
+            }
+
+            .unshow {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            .show {
+                opacity: 1;
+                transform: translateY(0);
+                transition: all 0.75s ease-in-out;
+            }
+
+            .unshow2 {
+                transform: translateX(-280px);
+            }
+
+            .tran2 {
+                transform: translateX(0);
+                transition: transform 0.5s ease-in-out;
+                z-index: 5;
+            }
+
+            .tran3 {
+                position: fixed;
+                z-index: 0;
+                width: 100vw;
+                height: 100vh;
+                background: linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(0, 0, 0, 0.8)
+                );
+                transition: all 1s linear;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex gap-20">
+            <div>
+                <i
+                    class="fa-solid fa-bars p-6 absolute cursor-pointer"
+                    id="icon"
+                ></i>
+                <div
+                    class="h-screen min-w-70 bg-red-400 p-6 flex flex-col gap-5 unshow2 absolute"
+                >
+                    <h2 class="text-3xl font-bold">D1a</h2>
+                    <div class="flex gap-5">
+                        <i class="fa-solid fa-house"></i>
+                        <div class="">Trang chủ</div>
+                    </div>
+                    <div class="flex gap-5">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <div class="">Đào Tạo</div>
+                    </div>
+                    <div class="flex gap-5">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <div class="">Hoạt Động</div>
+                    </div>
+                    <div class="flex gap-5">
+                        <i class="fa-solid fa-user-group"></i>
+                        <div class="">Thành viên</div>
+                    </div>
+                </div>
+                <div class="bg-transparent"></div>
+            </div>
+
+            <div class="mx-auto">
+                <div class="m-5 inline-block p-[10px]">
+                    <button
+                        class="text-white bg-black m-5 cursor-pointer p-3 rounded-lg"
+                        id="btn"
+                    >
+                        <span>Click me!</span>
+                    </button>
+                    <p class="max-w-[400px] mx-5 unshow">
+                        IT PTIT Club là câu lạc bộ học thuật trực thuộc khoa
+                        CNTT 1 của Học viện Công nghệ Bưu chính Viễn thông. CLB
+                        được hình thành từ sự hợp nhất của 2 CLB kỳ cựu nhất
+                        trong Học viện là CLB SRC PTIT và một số thành viên của
+                        CLB lập trình Pro PTIT vào năm 2013. Sau 10 năm hợp
+                        nhất, IT PTIT đã đạt được rất nhiều thành công lớn.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <script type="module" src="/src/main.js"></script> -->
+        <script>
+            let isHidden = true
+            document.title = 'Navbar Notifi'
+            const ele = document.getElementById('btn')
+            const nextEle = ele.nextElementSibling
+            ele.addEventListener('click', () => {
+                if (isHidden) {
+                    ele.parentElement.classList.add('par')
+                    isHidden = false
+                    nextEle.classList.add('show')
+                    ele.textContent = 'Click me again'
+                } else {
+                    ele.parentElement.classList.remove('par')
+                    isHidden = true
+                    nextEle.classList.remove('show')
+                    ele.textContent = 'Click me'
+                }
+            })
+
+            const ele2 = document.getElementById('icon')
+            const nextEle2 = ele2.nextElementSibling
+            const nextEle3 = nextEle2.nextElementSibling
+            ele2.addEventListener('click', () => {
+                nextEle2.classList.add('tran2')
+                nextEle3.classList.add('tran3')
+            })
+
+            if (nextEle2.classList.contains('tran2')) {
+                document.addEventListener('click', () => {
+                    nextEle2.classList.remove('tran2')
+                    nextEle3.classList.remove('tran3')
+                    alert('1234')
+                })
+            }
+        </script>
+    </body>
+</html>
